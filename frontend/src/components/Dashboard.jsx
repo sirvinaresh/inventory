@@ -4,8 +4,14 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import {Table, Card, Row, Col } from "react-bootstrap";
 import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 function Dashboard() {
   
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const navi = useNavigate();
   const [book,setbooks] = useState([]);
   const fetchdata = () =>{
@@ -26,6 +32,7 @@ function Dashboard() {
   const availableBooks = book.filter(b => b.stock > 0).length;
   const outOfStock = book.filter(b => b.stock === 0).length;
 
+  const [del,setdel] = useState();
   return (
     <>
    <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
@@ -65,6 +72,7 @@ function Dashboard() {
             </Card>
           </Col>
         </Row>
+
       </div>
 
       <hr className="my-5" />
@@ -101,7 +109,8 @@ function Dashboard() {
                       </td>
                       <td class="text-center d-flex justify-content-evenly">
                             <button className='btn btn-warning' onClick={()=>{sessionStorage.setItem('bookedit',JSON.stringify(val)); navi('/addbook')}}><i className="bi bi-pencil-fill"></i></button>
-                            <button className='btn btn-danger' onClick={()=>{deleteBook(val._id);}}><i className="bi bi-trash-fill"></i></button>
+                            {/* <button className='btn btn-danger' onClick={()=>{deleteBook(val._id);}}><i className="bi bi-trash-fill"></i></button> */}
+                            <button className='btn btn-danger' onClick={()=>{handleShow(); setdel(val._id)}}><i className="bi bi-trash-fill"></i></button>
                       </td>
                     </tr>
                   )
@@ -110,6 +119,21 @@ function Dashboard() {
           </tbody>
         </Table>
       </div>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Confirmation</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete this?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="danger" onClick={()=>{deleteBook(del); handleClose()}}>
+            Yes delete, it
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </main>
     </>
   )

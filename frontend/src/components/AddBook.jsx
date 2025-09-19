@@ -6,7 +6,6 @@ function AddBook() {
 
     const navi = useNavigate();
     const [formData, setFormData] = useState({
-        _id:"",
         title: "",
         author: "",
         genre: "",
@@ -28,7 +27,7 @@ function AddBook() {
       navi('/');
     }else{
       await axios.post('http://localhost:8080/',formData)
-      .then((response)=>console.log(response))
+      .then((response)=>console.log(response.data))
       .catch((error)=>console.log(error))
       setFormData({_id:'', title: "", author: "", genre: "", price: "", stock: "" });
     }
@@ -53,8 +52,7 @@ function AddBook() {
     <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
       <div className="container">
         <Card className="shadow-sm">
-          <Card.Header><h3>Add New Book</h3></Card.Header>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur placeat qui architecto provident consequuntur nemo nesciunt error, incidunt similique accusamus est sequi, cupiditate id eveniet, labore iusto illo maxime expedita.</p>
+          <Card.Header><h3>{formData._id ? "Update Book" : "Add New Book"}</h3></Card.Header>
           <Card.Body>
             <Form onSubmit={handleSubmit}>
               {/* Book Title */}
@@ -100,7 +98,8 @@ function AddBook() {
               </Row>
 
               {/* Submit Button */}
-              <Button type="submit" variant="primary" className="w-25">Add Book</Button>
+              <Button type="submit" variant="success" className='me-3'>Submit</Button>
+              <Button type="reset" variant="danger">Cancel</Button>
             </Form>
           </Card.Body>
         </Card>

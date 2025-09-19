@@ -7,21 +7,19 @@ function Header() {
     <>
         <header>
             <Navbar expand="lg" fixed="top" className="py-1" style={{ backgroundColor: '#1e293b' }}>
-                <Container>
+                <Container fluid className='px-5 py-2'>
                 <img src={require('../images/logo.png')} alt="Logo" style={{ height: '55px' }} />
 
                 <Navbar.Toggle aria-controls="navbarNav" className="text-light" />
 
                 <Navbar.Collapse id="navbarNav" className="justify-content-end">
                     <Nav>
-                    <Nav.Link href="#" className="text-light">
-                        Profile
+                    <Nav.Link href="#" className="text-light fs-4">
+                        <i class="bi bi-person-circle"></i>
                     </Nav.Link>
-                    <Nav.Link href="#" className="text-light">
-                        Settings
-                    </Nav.Link>
-                    <Nav.Link href="#" className="text-light">
-                        Logout
+                   
+                    <Nav.Link href="#" className="text-light fs-4">
+                        <i class="bi bi-box-arrow-right"></i>
                     </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
