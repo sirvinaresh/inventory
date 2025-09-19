@@ -47,12 +47,14 @@ function AddBook() {
       })
     }
   },[])
+
   return (
     <>
     <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
       <div className="container">
         <Card className="shadow-sm">
           <Card.Header><h3>Add New Book</h3></Card.Header>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur placeat qui architecto provident consequuntur nemo nesciunt error, incidunt similique accusamus est sequi, cupiditate id eveniet, labore iusto illo maxime expedita.</p>
           <Card.Body>
             <Form onSubmit={handleSubmit}>
               {/* Book Title */}
