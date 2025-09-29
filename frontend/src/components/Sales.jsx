@@ -141,7 +141,7 @@ function Sales() {
               </Row>
 
               {/* Submit */}
-              <Button type="submit" variant="success" className="">
+              <Button type="submit" variant="successw" className="">
                 Submit
               </Button>
             </Form>

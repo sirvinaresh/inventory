@@ -102,7 +102,10 @@ function Dashboard() {
                       <td>{val.title}</td>
                       <td>{val.author}</td>
                       <td>{val.genre}</td>
-                      <td>₹{val.price.toLocaleString('en-IN')}</td>
+                      <td>{val.price.toLocaleString("en-IN", {
+                        style: "currency",
+                        currency: "INR"
+                      })}</td>
                       <td>{val.stock}</td>
                       <td className={val.stock > 5 ? 'text-success fw-bold' : val.stock > 0 ? 'text-warning fw-bold' : 'text-danger fw-bold'}>
                         {val.stock > 5 ? 'Available' : val.stock > 0 ? 'Low Stock' : 'Out of stock'}

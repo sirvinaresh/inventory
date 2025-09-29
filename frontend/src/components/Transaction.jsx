@@ -7,7 +7,7 @@ const [sales, setSales] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/sale/getsales") // ✅ API to fetch sales
+      .get("http://localhost:8080/sale/getsales") // API to fetch sales
       .then((res) => setSales(res.data))
       .catch((err) => console.error("Error fetching sales:", err));
   }, []);
